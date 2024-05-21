@@ -32,7 +32,7 @@ app.add_middleware(
 
 # ensure typesafety
 class TodosBase(BaseModel):
-    priority: float
+    priority: str
     task: str
     description: str
     completion_status: bool

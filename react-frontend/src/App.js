@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import api from './api'
 
 const App = () => {
-  const [transactions, setTransactions] = useState([]);
+  const [todos, setTodos] = useState([]);
   const [formData, setFormData] = useState({
     priority: '',
     task: '',
@@ -11,13 +11,13 @@ const App = () => {
     date: ''
   });
 
-  const fetchTransactions = async () => {
+  const fetchTodos= async () => {
     const response = await api.get('/todos');
-    setTransactions(response.data)
+    setTodos(response.data)
   };
 
   useEffect(() => {
-    fetchTransactions();
+    fetchTodos();
   }, []);
 
   const handleInputChange = (event) => {
@@ -31,7 +31,7 @@ const App = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     await api.post('/todos', formData);
-    fetchTransactions();
+    fetchTodos();
     setFormData({
       priority: '',
       task: '',
@@ -55,16 +55,16 @@ const App = () => {
       <form onSubmit={handleFormSubmit}>
         <div className='mb-3 mt-3'>
           <label htmlFor='amount' className='form-label'>
-            Amount
+            Priority
           </label>
-          <input type='text' className='form-control' id='amount' name='amount' onChange={handleInputChange} value={formData.priority}/>
+          <input type='text' className='form-control' id='priority' name='priority' onChange={handleInputChange} value={formData.priority}/>
         </div>
 
         <div className='mb-3 mt-3'>
           <label htmlFor='category' className='form-label'>
-            Category
+            Task
           </label>
-          <input type='text' className='form-control' id='category' name='category' onChange={handleInputChange} value={formData.task}/>
+          <input type='text' className='form-control' id='task' name='task' onChange={handleInputChange} value={formData.task}/>
         </div>
 
         <div className='mb-3 mt-3'>
@@ -76,9 +76,9 @@ const App = () => {
 
         <div className='mb-3 mt-3'>
           <label htmlFor='is_income' className='form-label'>
-            Income?
+            Completion Status?
           </label>
-          <input type='checkbox' id='is_income' name='is_income' onChange={handleInputChange} value={formData.completion_status}/>
+          <input type='checkbox' id='completion_status' name='completion_status' onChange={handleInputChange} value={formData.completion_status}/>
         </div>
 
         <div className='mb-3 mt-3'>
@@ -94,7 +94,6 @@ const App = () => {
       </form>
 
 
-      completion_status: false,
       <table className='table table-striped table-bordered table-hover'>
         <thead>
           <tr>
@@ -106,13 +105,13 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction) =>(
-            <tr key={transaction.id}>
-              <td>{transaction.priority}</td>
-              <td>{transaction.task}</td>
-              <td>{transaction.description}</td>
-              <td>{transaction.completion_status? 'Yes' : 'No'}</td>
-              <td>{transaction.date}</td>
+          {todos.map((todos) =>(
+            <tr key={todos.id}>
+              <td>{todos.priority}</td>
+              <td>{todos.task}</td>
+              <td>{todos.description}</td>
+              <td>{todos.completion_status? 'Yes' : 'No'}</td>
+              <td>{todos.date}</td>
             </tr>
           ))}
         </tbody>
