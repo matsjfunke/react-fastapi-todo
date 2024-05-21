@@ -1,3 +1,5 @@
+![GIF Demo](./demo.gif)
+
 # comunication from react to fastapi
 
 - this api.js file tells frontend where backend is located
@@ -33,7 +35,7 @@
     ```
 
 
-# starting the app
+# usage / quick-start
 
 ```bash
 cd fastapi-backend
@@ -48,3 +50,4 @@ python main.py
 cd react-frontend
 npm start
 ```
+- than access it under localhost:3000
