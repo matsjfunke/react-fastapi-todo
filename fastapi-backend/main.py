@@ -80,7 +80,7 @@ async def get_todos(db: db_dependency, skip: int = 0, limit: int = 100):
     return todos
 
 
-@app.post("/delete_todo")
+@app.post("/delete_todo/{id}")
 async def delete_todo(id: int, db: db_dependency):
     try:
         todo_to_delete = db.query(models.Todos).filter_by(id=id).one()
