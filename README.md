@@ -9,7 +9,9 @@ git clone https://github.com/matsjfunke/react-fastapi-todo.git
 # start docker containers
 docker-compose -f docker-compose.yml up
 ```
-- than access it under localhost:3000
+- access frontend @ localhost:3000 and test it out
+- access backend @ localhost:8000/docs for testing the endpoints,
+  or @ localhost:8000/openapi.json To generate the OpenAPI (formerly Swagger) documentation. 
 
 
 # Comunication between react & fastapi
