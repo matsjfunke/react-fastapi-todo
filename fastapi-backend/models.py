@@ -5,15 +5,15 @@ matsjfunke
 models.py creates the relations of the database
 """
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean, Float
+from sqlalchemy import Column, Integer, String, Boolean
 
 
 class Todos(Base):
     __tablename__ = 'transactions'
 
     id = Column(Integer, primary_key=True, index=True)
-    priority = Column(Float)
+    priority = Column(String)
     task = Column(String)
     description = Column(String)
-    scompletion_statu = Column(Boolean)
+    completion_status = Column(Boolean)
     date = Column(String)

@@ -1,4 +1,20 @@
-# React frontend with FastAPI backend
+# comunication from react to fastapi
+
+- this api.js file tells frontend where backend is located
+    ```javascript
+    /*
+    api.js creates an Axios instance named api with a base URL of http://localhost:8000,
+    which can be imported / used throughout the frontend app 
+    to send HTTP requests to the specified server.
+    */
+    import axios from 'axios'
+
+    const api = axios.create({
+        baseURL: 'http://localhost:8000',
+    })
+
+    export default api;
+    ```
 
 - Cross-Origin Resource Sharing allows React frontend to access backend endpoints
     ```python
@@ -16,11 +32,19 @@
     )
     ```
 
-# How to start React
 
-1. [install node.js](https://nodejs.org/en/download)
-2. use npx create the react app
-    - npx is a command-line tool that allows you to run Node.js packages without installing them globally.
-    ```bash
-    npx create-react-app my-react-app
-    ```
+# starting the app
+
+```bash
+cd fastapi-backend
+# create env and install dependencys
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+# start server
+python main.py
+
+# start frontend
+cd react-frontend
+npm start
+```

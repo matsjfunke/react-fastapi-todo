@@ -66,8 +66,7 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.post("/todos", response_model=TodosModel)
 async def create_todo(todo: TodosBase, db: db_dependency):
-    print("add todo")
-    db_todo = models.Todos(**todo.dict())
+    db_todo = models.Todos(priority=todo.priority, task=todo.task, description=todo.description, completion_status=todo.completion_status, date=todo.date)
     db.add(db_todo)
     db.commit()
     db.refresh(db_todo)
