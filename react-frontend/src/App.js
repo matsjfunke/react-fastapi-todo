@@ -12,7 +12,7 @@ const App = () => {
   });
 
   const fetchTransactions = async () => {
-    const response = await api.get('/transactions/');
+    const response = await api.get('/todos');
     setTransactions(response.data)
   };
 
@@ -30,7 +30,7 @@ const App = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    await api.post('/transactions/', formData);
+    await api.post('/todos', formData);
     fetchTransactions();
     setFormData({
       priority: '',

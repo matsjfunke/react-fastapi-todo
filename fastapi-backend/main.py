@@ -64,7 +64,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 models.Base.metadata.create_all(bind=engine)
 
 
-@app.post("/add_todo", response_model=TodosModel)
+@app.post("/todos", response_model=TodosModel)
 async def create_todo(todo: TodosBase, db: db_dependency):
     print("add todo")
     db_todo = models.Todos(**todo.dict())
@@ -74,7 +74,7 @@ async def create_todo(todo: TodosBase, db: db_dependency):
     return db_todo
 
 
-@app.get("/get_todos", response_model=List[TodosModel])
+@app.get("/todos", response_model=List[TodosModel])
 async def get_todos(db: db_dependency, skip: int = 0, limit: int = 100):
     todos = db.query(models.Todos).offset(skip).limit(limit).all()
     return todos
