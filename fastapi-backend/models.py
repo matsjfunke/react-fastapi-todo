@@ -15,5 +15,5 @@ class Todos(Base):
     priority = Column(Float)
     task = Column(String)
     description = Column(String)
-    status = Column(Boolean)
+    scompletion_statu = Column(Boolean)
     date = Column(String)

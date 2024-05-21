@@ -35,7 +35,7 @@ class TodosBase(BaseModel):
     priority: float
     task: str
     description: str
-    status: bool
+    completion_status: bool
     date: str
 
 
