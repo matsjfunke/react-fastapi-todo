@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  react-frontend:
+    build:
+      context: ./react-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    command: ["npm", "start"]
+
+  fastapi-backend:
+    build:
+      context: ./fastapi-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    command: ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:8000", "main:app"]

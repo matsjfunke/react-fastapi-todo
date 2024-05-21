@@ -77,7 +77,3 @@ async def create_todo(todo: TodosBase, db: db_dependency):
 async def get_todos(db: db_dependency, skip: int = 0, limit: int = 100):
     todos = db.query(models.Todos).offset(skip).limit(limit).all()
     return todos
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
