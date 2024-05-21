@@ -1,6 +1,18 @@
+# Demo
 ![GIF Demo](./demo.gif)
 
-# comunication from react to fastapi
+# Usage / Quick-Start
+
+```bash
+# clone repo
+git clone https://github.com/matsjfunke/react-fastapi-todo.git
+# start docker containers
+docker-compose -f docker-compose.yml up
+```
+- than access it under localhost:3000
+
+
+# Comunication between react & fastapi
 
 - this api.js file tells frontend where backend is located
     ```javascript
@@ -33,21 +45,3 @@
         allow_headers=["*"]
     )
     ```
-
-
-# usage / quick-start
-
-```bash
-cd fastapi-backend
-# create env and install dependencys
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-# start server
-python main.py
-
-# start frontend
-cd react-frontend
-npm start
-```
-- than access it under localhost:3000
