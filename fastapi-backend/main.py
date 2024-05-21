@@ -81,11 +81,11 @@ async def get_todos(db: db_dependency, skip: int = 0, limit: int = 100):
 
 
 @app.post("/delete_todo")
-async def delete_todo(task: str, db: db_dependency):
+async def delete_todo(id: int, db: db_dependency):
     try:
-        todo_to_delete = db.query(models.Todos).filter_by(task=task).one()
+        todo_to_delete = db.query(models.Todos).filter_by(id=id).one()
         db.delete(todo_to_delete)
         db.commit()
-        return {"status": 200, "detail": f"user: {task} was deleted"}
+        return {"status": 200, "detail": "todo was deleted"}
     except NoResultFound:
-        return {"status": 400, "detail": f"failed to delete task: {task}"}
+        return {"status": 400, "detail": "failed to delete todo"}

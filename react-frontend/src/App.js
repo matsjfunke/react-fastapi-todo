@@ -41,6 +41,15 @@ const App = () => {
     });
   };
 
+  const handleDeleteTodo = async (id) => {
+    try {
+      await api.post(`/delete_todo/${id}`);
+      fetchTodos();
+    } catch (error) {
+      console.error("Failed to delete todo:", error);
+      }
+  };
+
   return (
     <div>
       <nav className='navbar navbar-dark bg-primary'>
@@ -112,6 +121,15 @@ const App = () => {
               <td>{todos.description}</td>
               <td>{todos.completion_status? 'Yes' : 'No'}</td>
               <td>{todos.date}</td>
+              <td>
+                <button
+                    type='button'
+                    className='btn btn-danger'
+                    onClick={() => handleDeleteTodo(todos.id)}
+                >
+                    Delete
+                  </button>
+                </td>
             </tr>
           ))}
         </tbody>
