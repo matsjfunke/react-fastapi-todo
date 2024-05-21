@@ -7,6 +7,7 @@ main.py contains the API endpoints
 from fastapi import FastAPI, HTTPException, Depends
 from typing import Annotated, List
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import NoResultFound
 from pydantic import BaseModel
 from database import SessionLocal, engine
 
@@ -77,3 +78,14 @@ async def create_todo(todo: TodosBase, db: db_dependency):
 async def get_todos(db: db_dependency, skip: int = 0, limit: int = 100):
     todos = db.query(models.Todos).offset(skip).limit(limit).all()
     return todos
+
+
+@app.post("/delete_todo")
+async def delete_todo(task: str, db: db_dependency):
+    try:
+        todo_to_delete = db.query(models.Todos).filter_by(task=task).one()
+        db.delete(todo_to_delete)
+        db.commit()
+        return {"status": 200, "detail": f"user: {task} was deleted"}
+    except NoResultFound:
+        return {"status": 400, "detail": f"failed to delete task: {task}"}
